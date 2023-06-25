@@ -123,7 +123,7 @@ export default {
 }
 .img_box {
   position: absolute;
-  background-image: url(../utils//img/一张科技粒子风背景图.png);
+  background-image: url(../utils//img/aaa123.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
