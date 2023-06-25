@@ -27,27 +27,11 @@
         </div>
         <div class="status">状态</div>
         <div class="status1">
-          <el-input v-model="keyword" placeholder="状态"></el-input>
+          <el-input v-model="keyword" placeholder="已成功/未通过/已退款"></el-input>
         </div>
         <div class="plat">平台</div>
-        <div class="plat1">
-          <el-row>
-            <el-col :span="12">
-              <el-dropdown trigger="click">
-                <span class="el-dropdown-link">
-                  平台<i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-                <template v-slot:dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item icon="el-icon-plus" v-model="keyword">A</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-plus">B</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-plus-outline">C</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-check">D</el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-            </el-col>
-          </el-row>
+        <div class="plat1" style="margin-left: 15%">
+          <el-input v-model="keyword" placeholder="A/B/C/D"></el-input>
         </div>
         <div class="time">时间</div>
         <div class="block time1">
@@ -221,22 +205,22 @@ export default {
   width: 6%;
   height: 40px;
   position: absolute;
-  top: 10px;
-  left: 46.5%;
+  top: 15px;
+  left: 31.5%;
 }
 .time {
   width: 8%;
   height: 40px;
   position: absolute;
   top: 20px;
-  left: 64%;
+  left: 69%;
 }
 .time1 {
   width: 8%;
   height: 40px;
   position: absolute;
   top: 10px;
-  left: 69.5%;
+  left: 74.5%;
 }
 .status {
   width: 8%;
@@ -246,7 +230,7 @@ export default {
   left: 52%;
 }
 .status1 {
-  width: 6%;
+  width: 11%;
   height: 40px;
   position: absolute;
   top: 15px;

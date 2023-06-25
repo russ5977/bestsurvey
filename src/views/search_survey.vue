@@ -25,24 +25,9 @@
         <div class="number1">
           <el-input v-model="keyword" placeholder="项目编号"></el-input>
         </div>
-        <div class="platform1" style="margin-left: 15%">
-          <el-row>
-            <el-col :span="12">
-              <el-dropdown trigger="click">
-                <span class="el-dropdown-link">
-                  平台<i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-                <template v-slot:dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item icon="el-icon-plus">A</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-plus">B</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-plus-outline">C</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-check">D</el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-            </el-col>
-          </el-row>
+        <div class="platform2">平台</div>
+        <div class="platform3" style="margin-left: 15%">
+          <el-input v-model="keyword" placeholder="平台"></el-input>
         </div>
         <div class="search_button">
           <el-button type="primary" round @click="search_survey"
@@ -200,24 +185,24 @@ export default {
   top: 23px;
   left: 38%;
 }
-.platform {
+.platform2 {
   width: 8%;
   height: 40px;
   position: absolute;
-  top: 27px;
-  left: 30%;
+  top: 26px;
+  left: 44.5%;
 }
-.platform1 {
+.platform3 {
   width: 8%;
   height: 40px;
   position: absolute;
-  top: 32px;
-  left: 33.5%;
+  top: 23px;
+  left: 35.5%;
 }
 .search_button {
   position: absolute;
   top: 25px;
-  left: 58%;
+  left: 63%;
 }
 .jiayin {
   width: 10%;

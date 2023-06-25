@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div style="margin-top: 20%;">
     <p>账号：<input type="text" v-model="username" /></p>
     <p>密码：<input type="password" v-model="password" /></p>
-    <p><button @click="login">登录</button></p>
+    <p><button @click="login" style="margin-left: 3%;">登录</button></p>
   </div>
   <div class="tabulation1">
     <div
