@@ -6,5 +6,5 @@ urlpatterns = [
     path('search/', views.SearchSurvey.as_view()),
 ]
 router = DefaultRouter()
-router.register('show', views.BrandViewSet)
+router.register('show', views.SurveyViewSet)
 urlpatterns += router.urls

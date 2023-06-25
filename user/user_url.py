@@ -1,5 +1,6 @@
 from django.urls import path
 from user import views
+from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
     # 注册 账号 密码 手机号 验证码
@@ -10,3 +11,6 @@ urlpatterns = [
     path('logout/', views.LogoutView.as_view()),
     path('put_pass/', views.PutPass.as_view()),
 ]
+router = DefaultRouter()
+router.register('show_detail', views.SurveyDetailViewSet)
+urlpatterns += router.urls

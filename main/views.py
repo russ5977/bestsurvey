@@ -3,12 +3,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.db.models import Q
 from rest_framework.viewsets import ModelViewSet
-from bestsurvey.pagenation import MyPagination
+from jiayin.pagenation import MyPagination
 from main.models import SurveyMessage
 from main.serializers import SurveyMessageSer
 
 
-class BrandViewSet(ModelViewSet):
+class SurveyViewSet(ModelViewSet):
     queryset = SurveyMessage.objects.all().order_by('-date')
     serializer_class = SurveyMessageSer
     lookup_field = 'id'

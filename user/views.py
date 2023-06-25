@@ -1,16 +1,16 @@
-from django.contrib.auth.hashers import check_password
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework_jwt.serializers import jwt_payload_handler, jwt_encode_handler
 from django.contrib.auth import logout
-from django.views import View
-from django import http
 import random
 import string
 
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from user.models import User
+from jiayin.pagenation import MyPagination
+from user.models import User, SurveyDetail
+from user.serializers import SurveyDetailSer
 
 
 class RegisterView(APIView):
@@ -89,3 +89,12 @@ class PutPass(APIView):
         # 生成token
         token = jwt_encode_handler(payload_dict)
         return Response({"msg": "修改密码成功", "code": "200", 'token': token, 'username': users.username})
+
+
+class SurveyDetailViewSet(ModelViewSet):
+    queryset = SurveyDetail.objects.all().order_by('id')
+    serializer_class = SurveyDetailSer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'id'
+    # 分页
+    pagination_class = MyPagination
