@@ -1,0 +1,235 @@
+<template>
+  <div>
+    <div class="top_title" style="height: 60px">
+      <div class="col-xs-5 col-sm-4 path-img jiayin">
+        <img style="width: 100%" src="../utils//img//1.png" />
+      </div>
+
+      <div class="questionnaire_list">
+        <a href="/main_page">
+          <el-button type="primary" plain>问卷列表</el-button></a
+        >
+      </div>
+
+      <div class="personal_data">
+        <a href="/personal_data"
+          ><el-button type="primary" plain>个人数据</el-button></a
+        >
+      </div>
+
+      <div class="platform_statistics">
+        <a><el-button type="primary" plain>平台统计</el-button></a>
+      </div>
+      <div class="button_class">
+        <div class="number">项目编号</div>
+        <div class="number1">
+          <el-input v-model="keyword" placeholder="项目编号"></el-input>
+        </div>
+        <div class="platform1" style="margin-left: 15%">
+          <el-row>
+            <el-col :span="12">
+              <el-dropdown trigger="click">
+                <span class="el-dropdown-link">
+                  平台<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <template v-slot:dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item icon="el-icon-plus">A</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus">B</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus-outline">C</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-check">D</el-dropdown-item>
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="search_button">
+          <el-button type="primary" round @click="search_survey"
+            >搜索</el-button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="/self_message"
+    ><div class="setting"><b class="el-icon-setting"></b></div
+  ></a>
+
+  <div class="full">
+    <b class="el-icon-message"></b>
+  </div>
+
+    <div class="main">
+      <el-table :data="houselist" border stripe>
+        <el-table-column label="编号" prop="number"></el-table-column>
+        <el-table-column label="项目" prop="introduction"></el-table-column>
+        <el-table-column label="价格" prop="price"></el-table-column>
+        <el-table-column label="国家" prop="country"></el-table-column>
+        <el-table-column label="国家名称" prop="country_name"></el-table-column>
+        <el-table-column label="时长(分钟)" prop="duration"></el-table-column>
+        <el-table-column label="日期" prop="date"></el-table-column>
+        <el-table-column label="操作">
+          <div class="join">
+            <el-button type="primary" round>进入调查</el-button>
+          </div>
+          <br />
+          <div class="check">
+            <el-button type="success" round>查看要求</el-button>
+          </div>
+        </el-table-column> </el-table
+      ><br /><br />
+      <el-pagination
+        :current-page="queryInfo.pagenum"
+        :page-sizes="[5, 10, 20, 30, 50]"
+        :page-size="queryInfo.pagesize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      >
+      </el-pagination>
+    </div>
+</template>
+  
+<script>
+import Axios from "axios";
+export default {
+  data() {
+    return {
+      queryInfo: {
+        query: "", // 查询参数
+        pagenum: 1, // 当前页码
+        page: 1,
+        pagesize: 5, // 每页显示条数
+      },
+      total: 0,
+      houselist: [],
+      username: localStorage.getItem("username"),
+      keyword: "",
+    };
+  },
+  methods: {
+    search_survey() {
+      Axios.post("/main/search/", { keyword: this.keyword })
+        .then((resp) => {
+          console.log(resp.data);
+          this.houselist = resp.data.data;
+          console.log(">>>>>>>>>>>>this.list1", this.houselist);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+};
+</script>
+  
+  <style>
+.top_title {
+  width: 100%;
+  background: rgb(231, 216, 216);
+}
+.layui-nav-header-logo {
+  height: 50px;
+  width: 5%;
+  top: 15px;
+  position: absolute;
+  left: 5%;
+}
+.questionnaire_list {
+  height: 50px;
+  width: 5%;
+  top: 15px;
+  position: absolute;
+  left: 18%;
+}
+.personal_data {
+  height: 50px;
+  width: 5%;
+  top: 15px;
+  position: absolute;
+  left: 25%;
+}
+.platform_statistics {
+  height: 50px;
+  width: 5%;
+  top: 15px;
+  position: absolute;
+  left: 11.5%;
+}
+.setting {
+  width: 3%;
+  position: absolute;
+  right: 1%;
+  background: rgb(219, 208, 208);
+  top: 18px;
+}
+.full {
+  width: 3%;
+  position: absolute;
+  right: 35%;
+  background: rgb(219, 208, 208);
+  top: 18px;
+}
+.main {
+  width: 100%;
+  height: 95%;
+  position: absolute;
+  background: rgb(206, 203, 203);
+  top: 127px;
+}
+.search {
+  width: 100%;
+  height: 20%;
+  position: absolute;
+  background: rgb(254, 251, 251);
+  top: 80px;
+}
+.number {
+  width: 5%;
+  height: 40px;
+  position: absolute;
+  top: 27px;
+  left: 33%;
+}
+.number1 {
+  width: 8%;
+  height: 40px;
+  position: absolute;
+  top: 23px;
+  left: 38%;
+}
+.platform {
+  width: 8%;
+  height: 40px;
+  position: absolute;
+  top: 27px;
+  left: 30%;
+}
+.platform1 {
+  width: 8%;
+  height: 40px;
+  position: absolute;
+  top: 32px;
+  left: 33.5%;
+}
+.search_button {
+  position: absolute;
+  top: 25px;
+  left: 58%;
+}
+.jiayin {
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  top: 2.5%;
+  left: 1%;
+}
+.button_class {
+  position: absolute;
+  top: 8%;
+  width: 100%;
+  left: -32%;
+}
+</style>
